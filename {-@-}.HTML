@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <title>Статистика игроков</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #1e1e1e;
+      color: #f0f0f0;
+      padding: 20px;
+    }
+    h1 { text-align: center; }
+    .player-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      justify-content: center;
+    }
+    .player-button {
+      background-color: #333;
+      color: white;
+      border: 1px solid #555;
+      padding: 10px 20px;
+      border-radius: 8px;
+      cursor: pointer;
+    }
+    .player-button:hover {
+      background-color: #555;
+    }
+    .stats {
+      margin-top: 20px;
+      display: none;
+      background-color: #2a2a2a;
+      padding: 20px;
+      border-radius: 10px;
+      max-width: 600px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    .stats.active {
+      display: block;
+    }
+    .stats h2 {
+      text-align: center;
+    }
+    .stat-item {
+      margin: 10px 0;
+    }
+    .updated {
+      font-size: 0.9em;
+      color: #aaa;
+      text-align: right;
+    }
+  </style>
+</head>
+<body>
+  <h1>Статистика игроков сервера</h1>
+  <div class="player-list">
+    <button class="player-button" onclick="showStats('JJDAFF')">JJDAFF</button>
+    <button class="player-button" onclick="showStats('SoZoNo')">SoZoNo</button>
+    <button class="player-button" onclick="showStats('__Oguzok__')">__Oguzok__</button>
+    <button class="player-button" onclick="showStats('SaUreex')">SaUreex</button>
+    <button class="player-button" onclick="showStats('SkySanchous')">SkySanchous</button>
+    <button class="player-button" onclick="showStats('Dark_LE')">Dark_LE</button>
+  </div>
+
+  <div id="stats-container"></div>
+
+  <script>
+    const players = {
+      JJDAFF: {
+        updated: '2025-06-10',
+        taxesPaid: 'Да',
+        money: '5000$',
+        transfers: '2 перевода',
+        name: 'Иван Иванов',
+        job: 'Шахтёр',
+        residence: 'Деревня 1',
+        permissions: 'Торговать, копать шахты'
+      },
+      SoZoNo: {
+        updated: '2025-06-08',
+        taxesPaid: 'Нет',
+        money: '1200$',
+        transfers: '0',
+        name: 'Пётр Сидоров',
+        job: 'Фермер',
+        residence: 'Город N',
+        permissions: 'Торговать'
+      },
+      __Oguzok__: {
+        updated: '2025-06-09',
+        taxesPaid: 'Да',
+        money: '750$',
+        transfers: '1 перевод',
+        name: 'Огуз Огузов',
+        job: 'Кузнец',
+        residence: 'Деревня 2',
+        permissions: 'Строить, ковать'
+      },
+      SaUreex: {
+        updated: '2025-06-10',
+        taxesPaid: 'Да',
+        money: '6300$',
+        transfers: '3 перевода',
+        name: 'Алексей Реек',
+        job: 'Администратор',
+        residence: 'Столица',
+        permissions: 'Все'
+      },
+      SkySanchous: {
+        updated: '2025-06-07',
+        taxesPaid: 'Нет',
+        money: '200$',
+        transfers: '0',
+        name: 'Скай Санчоус',
+        job: 'Бездомный',
+        residence: 'Нет данных',
+        permissions: 'Нет'
+      },
+      Dark_LE: {
+        updated: '2025-06-05',
+        taxesPaid: 'Да',
+        money: '4800$',
+        transfers: '1 перевод',
+        name: 'Дарк Ли',
+        job: 'Охранник',
+        residence: 'Форт Ли',
+        permissions: 'Охранять территорию'
+      }
+    };
+
+    function showStats(playerName) {
+      const data = players[playerName];
+      const container = document.getElementById('stats-container');
+
+      container.innerHTML = `
+        <div class="stats active">
+          <h2>Статистика игрока ${playerName}</h2>
+          <div class="stat-item"><strong>1) Уплата налогов:</strong> ${data.taxesPaid}</div>
+          <div class="stat-item"><strong>2) Денежные средства:</strong> ${data.money}</div>
+          <div class="stat-item"><strong>3) Переводы:</strong> ${data.transfers}</div>
+          <div class="stat-item"><strong>4) Ф.И.О:</strong> ${data.name}</div>
+          <div class="stat-item"><strong>5) Кем работает:</strong> ${data.job}</div>
+          <div class="stat-item"><strong>6) Где живёт:</strong> ${data.residence}</div>
+          <div class="stat-item"><strong>7) Разрешения:</strong> ${data.permissions}</div>
+          <div class="updated">Последнее обновление: ${data.updated}</div>
+        </div>
+      `;
+    }
+  </script>
+</body>
+</html>
